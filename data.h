@@ -3,26 +3,25 @@
 template<typename T>
 class Data {
 private:
-    T* data_core_cpu;
+    T* data;
     int size;
 public:
-    /* TODO: change new[] to smart pointer */
     Data(){
-        data_core_cpu = nullptr;
+        data = nullptr;
     }
-    
+    /* TODO: change new[] to smart pointer */
     Data(const int count_measurements) {
         size = count_measurements;
-        data_core_cpu = new T[size];
+        data = new T[size];
     }
 
     T& operator[](const int index) {
-        return data_core_cpu[index];
+        return data[index];
     }
 
     ~Data() {
-        delete[] data_core_cpu;
-        data_core_cpu = nullptr;
+        delete[] data;
+        data = nullptr;
     }
 
     class Iterator {
@@ -48,11 +47,11 @@ public:
     };
 
     Iterator begin() {
-        return Iterator(data_core_cpu);
+        return Iterator(data);
     }
 
     Iterator end() {
-        return Iterator(data_core_cpu + size);
+        return Iterator(data + size);
     }
 };
 

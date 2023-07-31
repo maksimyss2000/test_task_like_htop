@@ -21,6 +21,7 @@ void Htop::makeSynchronizeThread() {
         cv.wait(lk);                       /* TODO: add predicate */
     }
 }
+
 void Htop::workByThread(Worker& worker, int index) {
     std::string output = worker.getStartOutput(index);
     while (testWorkStatus()) {
