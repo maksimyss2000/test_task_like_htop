@@ -6,7 +6,7 @@
 
 class Worker {
 public:
-    virtual void calculateUsage(Measurement& curr) = 0;
+    virtual void calculateUsage(Measurement& curr, float& utilization) = 0;
     virtual std::string getStartOutput(int index = 0) = 0;
 };
 

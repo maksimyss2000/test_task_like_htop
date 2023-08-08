@@ -12,23 +12,26 @@
 #include "worker_common_cpu.h"
 
 class Htop {
-public:
-    Htop();
-    void startProgramme();
 private:
-    int count_core;
     int count_data;
     int count_threads;
     int count_wait_threads;
+    int index_current_samples;
+    int index_main_graph;
     std::mutex synchronize;
     std::mutex print_console_buffer;
     std::condition_variable cv;
     Viewer viewer;
     DataMiner data_miner;   
     Data<Measurement> data;
+    Data<Data<float>> samples;
     WorkerCoreCpu worker_core_cpu;
     WorkerCommonCpu worker_common_cpu;
-    void makeSynchronizeThread();
-    void workByThread(Worker& worker,int index);
     bool testWorkStatus();
+    void makeSynchronizeThread();
+    void prepareForNextItearation();
+    void workByThread(Worker& worker,int index);
+public:
+    Htop();
+    void startProgramme();
 };

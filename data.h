@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 template<typename T>
 class Data {
 private:
@@ -9,19 +11,31 @@ public:
     Data(){
         data = nullptr;
     }
-    /* TODO: change new[] to smart pointer */
-    Data(const int count_measurements) {
-        size = count_measurements;
-        data = new T[size];
-    }
 
-    T& operator[](const int index) {
-        return data[index];
+    /* TODO: change new[] to smart pointer */
+    Data(const int size) {
+        this->size = size;
+        data = new T[size];
     }
 
     ~Data() {
         delete[] data;
-        data = nullptr;
+    }
+    
+    T& operator[](const int index) {
+        return data[index];
+    }
+
+    void operator=(Data<T>&& other) {
+        delete[] this->data;
+        this->data = other.data;
+        this->size = other.size;
+        other.data = nullptr;
+        other.size = 0;
+    } 
+
+    int getSize() {
+        return size;
     }
 
     class Iterator {
@@ -36,7 +50,13 @@ public:
             return *ptr;
         }
 
-        Iterator& operator++(int) {
+        Iterator operator++(int) {
+            Iterator tmp = *this; 
+            ++(*this);
+            return tmp;
+        }  
+
+        Iterator& operator++() {
             ptr++;
             return *this; 
         }  
