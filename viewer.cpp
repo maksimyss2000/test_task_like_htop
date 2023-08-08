@@ -29,11 +29,11 @@ void Viewer::printGraphBox() {
     mvvline(upper_left_graph_corner_y - 1, upper_left_graph_corner_x - 1,  '|', height_graph + 1);
     mvvline(upper_left_graph_corner_y - 1, upper_left_graph_corner_x + widht_graph, '|', height_graph + 1);
 
-    mvhline(upper_left_graph_corner_y - 2, upper_left_graph_corner_x ,  '-', widht_graph);
-    mvhline(upper_left_graph_corner_y + height_graph , upper_left_graph_corner_x ,  '-', widht_graph);
+    mvhline(upper_left_graph_corner_y - 2, upper_left_graph_corner_x,  '-', widht_graph);
+    mvhline(upper_left_graph_corner_y + height_graph , upper_left_graph_corner_x,  '-', widht_graph);
 
-    mvprintw(upper_left_graph_corner_y - 2,upper_left_graph_corner_x -1, "+");
-    mvprintw(upper_left_graph_corner_y - 2,upper_left_graph_corner_x + widht_graph, "+");
+    mvprintw(upper_left_graph_corner_y - 2, upper_left_graph_corner_x -1, "+");
+    mvprintw(upper_left_graph_corner_y - 2, upper_left_graph_corner_x + widht_graph, "+");
     mvprintw(upper_left_graph_corner_y  + height_graph,upper_left_graph_corner_x -1, "+");
     mvprintw(upper_left_graph_corner_y  + height_graph,upper_left_graph_corner_x + widht_graph, "+");
 }
@@ -61,7 +61,7 @@ void Viewer::printGraph(std::string& graph_name, Data<float>& samples, int index
         int hight_bar = round(samples[mod((index_start - i), size)] / delta_y);
         for (int j = 0; j < WIDTH_BAR; j++) {
             mvvline(upper_left_graph_corner_y + (height_graph - hight_bar), 
-                    upper_left_graph_corner_x + i * 2 + j ,
+                    upper_left_graph_corner_x + i * 2 + j,
                     '#', hight_bar);
         }
     }
