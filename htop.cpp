@@ -12,7 +12,7 @@ constexpr int COUNT_SAMPLES = 25;
 
 void Htop::prepareForNextItearation(){
     data_miner.updateData(data);
-    index_current_samples = (index_current_samples + 1) % COUNT_SAMPLES;
+    index_current_sample = (index_current_sample + 1) % COUNT_SAMPLES;
     count_wait_threads = 0;
 }
 
@@ -32,11 +32,11 @@ void Htop::makeSynchronizeThread() {
 void Htop::workByThread(Worker& worker, int index_thread) {
     std::string output = worker.getStartOutput(index_thread);
     while (testWorkStatus()) {
-        worker.calculateUsage(data[index_thread], samples[index_thread][index_current_samples]);
+        worker.calculateUsage(data[index_thread], samples[index_thread][index_current_sample]);
         print_console_buffer.lock();
-        viewer.printConsoleBuffer(output, samples[index_thread][index_current_samples], index_thread);      
+        viewer.printConsoleBuffer(output, samples[index_thread][index_current_sample], index_thread);      
         if (index_main_graph == index_thread) {
-            viewer.printGraph(output, samples[index_thread], index_current_samples);
+            viewer.printGraph(output, samples[index_thread], index_current_sample);
         }
         print_console_buffer.unlock();  
         makeSynchronizeThread();
@@ -50,7 +50,7 @@ bool Htop::testWorkStatus() {
 
 Htop::Htop() {
     index_main_graph = 0;
-    index_current_samples = 0;
+    index_current_sample = 0;
     count_wait_threads = 0;
 
     int count_core = sysconf(_SC_NPROCESSORS_CONF);
