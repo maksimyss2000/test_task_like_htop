@@ -46,10 +46,11 @@ int Viewer::mod(int val, int m) {
 }
 
 void Viewer::printLabels(std::string& graph_name) {
-        mvprintw(upper_left_graph_corner_y - 1, upper_left_graph_corner_x + (widht_graph - graph_name.size()),"%s", graph_name.c_str());
-        mvprintw(upper_left_graph_corner_y, upper_left_graph_corner_x - 5, "100%%"); 
-        mvprintw(upper_left_graph_corner_y + (height_graph / 2), upper_left_graph_corner_x - 5, "%.0f%%", 100 - (height_graph / 2) * delta_y);        
-        mvprintw(upper_left_graph_corner_y + (height_graph - 2), upper_left_graph_corner_x - 5, "%.0f%%", 2 * delta_y);        
+    mvprintw(upper_left_graph_corner_y - 1, upper_left_graph_corner_x + (widht_graph - graph_name.size()),"%s", graph_name.c_str());
+    
+    mvprintw(upper_left_graph_corner_y, upper_left_graph_corner_x - 5, "100%%"); 
+    mvprintw(upper_left_graph_corner_y + (height_graph / 2), upper_left_graph_corner_x - 5, "%.0f%%", 100 - (height_graph / 2) * delta_y);        
+    mvprintw(upper_left_graph_corner_y + (height_graph - 2), upper_left_graph_corner_x - 5, "%.0f%%", 2 * delta_y);        
 }
 
 void Viewer::printGraph(std::string& graph_name, Data<float>& samples, int index_start) {  
@@ -57,7 +58,7 @@ void Viewer::printGraph(std::string& graph_name, Data<float>& samples, int index
     printLabels(graph_name);    
     int size = samples.getSize();
     for(int i = 0;i < count_bars; i++) {
-        int hight_bar = floor(samples[mod((index_start - i), size)] / delta_y);
+        int hight_bar = round(samples[mod((index_start - i), size)] / delta_y);
         for (int j = 0; j < WIDTH_BAR; j++) {
             mvvline(upper_left_graph_corner_y + (height_graph - hight_bar), 
                     upper_left_graph_corner_x + i * 2 + j ,
