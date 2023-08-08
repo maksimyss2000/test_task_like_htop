@@ -27,15 +27,15 @@ void Viewer::printConsoleBuffer(std::string& start_str, float& utilization, int 
 /* ncurses has inbuilt methods box(), but they break when the console size changes */
 void Viewer::printGraphBox() {
     mvvline(upper_left_graph_corner_y - 1, upper_left_graph_corner_x - 1,  '|', height_graph + 1);
-    mvvline(upper_left_graph_corner_y - 1, upper_left_graph_corner_x + widht_graph + 1, '|', height_graph + 1);
+    mvvline(upper_left_graph_corner_y - 1, upper_left_graph_corner_x + widht_graph, '|', height_graph + 1);
 
-    mvhline(upper_left_graph_corner_y - 2, upper_left_graph_corner_x ,  '-', widht_graph  + 1);
-    mvhline(upper_left_graph_corner_y + height_graph , upper_left_graph_corner_x ,  '-', widht_graph + 1);
+    mvhline(upper_left_graph_corner_y - 2, upper_left_graph_corner_x ,  '-', widht_graph);
+    mvhline(upper_left_graph_corner_y + height_graph , upper_left_graph_corner_x ,  '-', widht_graph);
 
     mvprintw(upper_left_graph_corner_y - 2,upper_left_graph_corner_x -1, "+");
-    mvprintw(upper_left_graph_corner_y - 2,upper_left_graph_corner_x + widht_graph + 1, "+");
+    mvprintw(upper_left_graph_corner_y - 2,upper_left_graph_corner_x + widht_graph, "+");
     mvprintw(upper_left_graph_corner_y  + height_graph,upper_left_graph_corner_x -1, "+");
-    mvprintw(upper_left_graph_corner_y  + height_graph,upper_left_graph_corner_x + widht_graph + 1, "+");
+    mvprintw(upper_left_graph_corner_y  + height_graph,upper_left_graph_corner_x + widht_graph, "+");
 }
 
 int Viewer::mod(int val, int m) {
@@ -72,7 +72,7 @@ void Viewer::setGraphParameters(int count_samples) {
         widht_graph = count_samples * WIDTH_BAR;
         count_bars = count_samples;
     } else {
-        widht_graph = MAX_WIDHT_SIZE_GRAPH * WIDTH_BAR;
+        widht_graph = MAX_WIDHT_SIZE_GRAPH;
         count_bars = MAX_WIDHT_SIZE_GRAPH / WIDTH_BAR;
     }
     height_graph = MAX_HEIGHT_SIZE_GRAPH;
