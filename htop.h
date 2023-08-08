@@ -16,7 +16,7 @@ private:
     int count_data;
     int count_threads;
     int count_wait_threads;
-    int index_current_samples;
+    int index_current_sample;
     int index_main_graph;
     std::mutex synchronize;
     std::mutex print_console_buffer;

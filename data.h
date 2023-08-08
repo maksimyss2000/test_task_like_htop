@@ -1,7 +1,5 @@
 #pragma once
 
-#include <iostream>
-
 template<typename T>
 class Data {
 private:
@@ -21,7 +19,7 @@ public:
     ~Data() {
         delete[] data;
     }
-    
+
     T& operator[](const int index) {
         return data[index];
     }
