@@ -10,7 +10,7 @@ constexpr int TIME_DELAY = 1500;           /* orignal htop has the same delay */
 constexpr int COUNT_SAMPLES = 25;
 
 
-void Htop::prepareForNextItearation(){
+void Htop::prepareForNextItearation() {
     data_miner.updateData(data);
     index_current_sample = (index_current_sample + 1) % COUNT_SAMPLES;
     count_wait_threads = 0;
