@@ -16,7 +16,9 @@
 
 
 # Результат
+Пример работы в сравнении с оригинальной программой при нагрузке и в ее отсутсивии.
+
+https://github.com/maksimyss2000/test_task_like_htop/assets/60465175/4a159f2f-fd67-44e4-ae24-4fac155199d8
 
 
-https://github.com/maksimyss2000/test_task_like_htop/assets/60465175/5b170561-6019-4fb4-80d5-be88526c4872
 
